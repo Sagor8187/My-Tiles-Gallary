@@ -1,6 +1,7 @@
 import Image from "next/image";
 import bannar from "@/assets/bannar.jpg"
 import Slicecard from "@/component/Slicecard";
+import Link from "next/link";
 export default function Home() {
   
   return (
@@ -13,7 +14,7 @@ export default function Home() {
     <h1 className="text-xl md:text-5xl text-zinc-800 font-sans font-bold tracking-tight">
       Discover Your Perfect Aesthetic
     </h1>
-    <button className="btn  btn-primary my-5">Browse Now</button>
+    <button className="btn  btn-primary my-5"><Link href={"/all-tiles"}>Browse Now</Link></button>
   </div>
   
 </div>

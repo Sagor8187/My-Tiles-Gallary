@@ -4,3 +4,10 @@ export const myproduct = async ()=>{
 
     return output
 }
+
+export const myproductDetails = async (id)=>{
+    const res = await fetch(`https://my-tiles-server-1.onrender.com/product/${id}`)
+    const output = await res.json()
+
+    return output
+}

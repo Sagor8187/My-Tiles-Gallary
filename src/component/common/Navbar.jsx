@@ -1,4 +1,23 @@
+"use client"
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 export default function Navbar() {
+    const pathname = usePathname()
+
+  const navItem = (href, label) => (
+    <Link
+      href={href}
+      className={`px-3 py-2 rounded-md transition ${
+        pathname === href
+          ? "bg-purple-600 text-white"
+          : "hover:bg-gray-200"
+      }`}
+    >
+      {label}
+    </Link>
+  );
+
   return (
     <div>
       <div className="navbar bg-base-100 shadow-sm">
@@ -26,27 +45,19 @@ export default function Navbar() {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
             <ul  className="menu menu-horizontal px-1 font-bold">
-            <li>
-              <a>Home</a>
-            </li>
-            <li><a >All Tiles</a></li>
-            <li>
-              <a>My profile</a>
-            </li>
+           <li>{navItem("/", "Home")}</li>
+          <li>{navItem("/all-tiles", "All Tiles")}</li>
+          <li>{navItem("/profile", "My Profile")}</li>
           </ul>
             </ul>
           </div>
           <a className="text-xl font-bold"><span className="text-2xl text-purple-700 ">Elite</span> Tiles</a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul  className="menu menu-horizontal px-1 font-bold">
-            <li>
-              <a>Home</a>
-            </li>
-            <li><a >All Tiles</a></li>
-            <li>
-              <a>My profile</a>
-            </li>
+          <ul  className="menu menu-horizontal px-1 font-bold flex gap-2">
+          <li>{navItem("/", "Home")}</li>
+          <li>{navItem("/all-tiles", "All Tiles")}</li>
+          <li>{navItem("/profile", "My Profile")}</li>
           </ul>
         </div>
         <div className="navbar-end">

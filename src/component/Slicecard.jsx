@@ -1,18 +1,23 @@
 import { myproduct } from "@/lib/data"
 import Image from "next/image"
+import Link from "next/link"
 
 export default async function Slicecard() {
     const data = await myproduct()
     const output = data.slice(0,4)
-    console.log(output)
+    
+    
+
+  
 
   return (
     <div>
-  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+        <h1 className="mx-auto text-center text-xl font-bold">Featured Tiles</h1>
+  <div className="grid grid-cols-1 md:grid-cols-4 gap-6 p-6">
       {output.map((item) => (
         <div
           key={item.id}
-          className="border rounded-lg shadow-md overflow-hidden bg-white"
+          className=" rounded-lg shadow-md overflow-hidden bg-white"
         >
           {/* Image */}
           <Image width={400} height={400}
@@ -44,7 +49,7 @@ export default async function Slicecard() {
 
             {/* Button */}
             <button className="w-full mt-3 bg-black text-white py-2 rounded hover:bg-gray-800">
-              View Details
+              <Link href={`/all-tiles/${item.id}`}>View Details</Link>
             </button>
           </div>
         </div>
