@@ -1,79 +1,89 @@
+"use client"
+
+import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
-import { MdEmail } from "react-icons/md";
-import { RiLockPasswordFill } from "react-icons/ri";
-import { FcGoogle } from "react-icons/fc";
-import { FaSignInAlt } from "react-icons/fa";
+import { useForm } from "react-hook-form";
 
 export default function LoginPage() {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 px-4 sm:px-6 lg:px-8">
 
+    const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm()
+  
+  const handlelogonSubmit =async (data) => {
+    const {email,password}= data
+    const { data:res, error } = await authClient.signIn.email({
+    email: email, // required
+    password:password, // required
+    rememberMe: true,
+    callbackURL:"/",
+});
+    console.log(data)
+  }
+  return (
+    <div className="bg-[#F3F3F3] flex items-center justify-center min-h-screen p-4">
+      
       {/* Card */}
-      <div className="w-full max-w-md bg-white/10 backdrop-blur-2xl border border-white/20 rounded-2xl shadow-2xl p-6 sm:p-8">
+      <div className="bg-white w-full max-w-md p-6 md:p-8 rounded-md shadow">
 
         {/* Header */}
-        <h2 className="text-2xl sm:text-3xl font-bold text-center text-white">
-          Welcome Back
-        </h2>
+        <h1 className="text-2xl font-bold text-[#403F3F] text-center mb-6">
+          Login your account
+        </h1>
+        
 
-        <p className="text-center text-gray-300 mt-2 mb-6 sm:mb-8 text-sm sm:text-base">
-          Login to{" "}
-          <span className="font-bold">
-            <span className="text-xl sm:text-2xl text-purple-500">Elite</span>{" "}
-            Tiles
-          </span>
-        </p>
+        <hr className="border-gray-200 mb-6" />
 
-        {/* Email */}
-        <div className="mb-4 sm:mb-5">
-          <label className="text-xs sm:text-sm text-gray-200">Email</label>
-          <div className="relative mt-1">
-            <MdEmail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-300 text-lg sm:text-xl" />
+        <form onSubmit={handleSubmit(handlelogonSubmit)} className="space-y-4">
+          
+          {/* Email */}
+          <div className="space-y-2">
+            <label className="text-sm font-semibold text-[#403F3F]">
+              Email address
+            </label>
             <input
               type="email"
               placeholder="Enter your email"
-              className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-xl bg-white/10 text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+              className="w-full bg-[#F3F3F3] rounded-md py-3 px-4 text-sm focus:ring-2 focus:ring-gray-400 outline-none"
+                 {...register("email",{required:"Email must requird"})}
+                
             />
+             {errors.email && <span className="text-red-500">{errors.email.message}</span>}
           </div>
-        </div>
 
-        {/* Password */}
-        <div className="mb-5 sm:mb-6">
-          <label className="text-xs sm:text-sm text-gray-200">Password</label>
-          <div className="relative mt-1">
-            <RiLockPasswordFill className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-300 text-lg sm:text-xl" />
+          {/* Password */}
+          <div className="space-y-2">
+            <label className="text-sm font-semibold text-[#403F3F]">
+              Password
+            </label>
             <input
               type="password"
               placeholder="Enter your password"
-              className="w-full pl-10 pr-4 py-2.5 sm:py-3 rounded-xl bg-white/10 text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm sm:text-base"
+              className="w-full bg-[#F3F3F3] rounded-md py-3 px-4 text-sm focus:ring-2 focus:ring-gray-400 outline-none"
+               {...register("password",{required:"password must requird"})}
             />
+            {errors.password && <span className="text-red-500">{errors.password.message}</span>}
           </div>
-        </div>
 
-        {/* Login Button */}
-        <button className="w-full flex items-center justify-center gap-2 py-2.5 sm:py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition text-sm sm:text-base">
-          <FaSignInAlt />
-          Login
-        </button>
-
-        {/* Divider */}
-        <div className="flex items-center my-5 sm:my-6">
-          <div className="flex-1 h-px bg-white/20"></div>
-          <span className="px-3 text-gray-300 text-xs sm:text-sm">OR</span>
-          <div className="flex-1 h-px bg-white/20"></div>
-        </div>
-
-        {/* Google Login */}
-        <button className="w-full flex items-center justify-center gap-3 py-2.5 sm:py-3 rounded-xl bg-white text-black font-semibold hover:bg-gray-200 transition text-sm sm:text-base">
-          <FcGoogle className="text-xl sm:text-2xl" />
-          Continue with Google
-        </button>
+          {/* Button */}
+          <button
+            type="submit"
+            className="w-full bg-purple-500 text-white font-semibold py-3 rounded-md text-sm hover:bg-[#2b2a2a]"
+          >
+            Login
+          </button>
+        </form>
 
         {/* Footer */}
-        <p className="text-center text-gray-300 mt-5 sm:mt-6 text-xs sm:text-sm">
-          Don’t have an account?{" "}
-          <Link href="/register" className="text-blue-400 hover:underline">
-            Register
+        <p className="text-center mt-6 text-sm text-[#706F6F]">
+          Don't have an account?{" "}
+          <Link href="/register">
+            <span className="text-[#F75B5F] hover:underline cursor-pointer">
+              Register
+            </span>
           </Link>
         </p>
 

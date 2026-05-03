@@ -29,7 +29,7 @@ export default  function Alltilespage() {
 }, []);
 
  const filterdata = data.filter(item =>
-  item.title.toLowerCase().includes(search.toLowerCase())
+  item.title.toLowerCase().includes(search.toLowerCase().trim())
 );
   
   return (
@@ -52,8 +52,9 @@ export default  function Alltilespage() {
           </button>
         </div>
       </div>
-      {loading?<Myloading></Myloading>:<div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
-        {filterdata.map((item) => (
+      {loading?<Myloading></Myloading>:<div>
+        {filterdata.length === 0 ?<h1>This product is not found</h1>:<div  className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+          {filterdata.map((item) => (
           <div
             key={item.id}
             className=" rounded-lg shadow-md overflow-hidden bg-white"
@@ -93,7 +94,7 @@ export default  function Alltilespage() {
               </button>
             </div>
           </div>
-        ))}
+        ))}</div>}
       </div>}
     </div>
   );

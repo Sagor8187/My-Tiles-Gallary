@@ -1,126 +1,136 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { FaUser, FaUserPlus } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
-import { RiLockPasswordFill } from "react-icons/ri";
-import { AiOutlineLink } from "react-icons/ai";
-import { FcGoogle } from "react-icons/fc";
+import { authClient } from '@/lib/auth-client'
+import Link from 'next/link'
+import { useForm } from 'react-hook-form'
+
+
 
 export default function RegisterPage() {
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm()
+
+  const handleregonSubmit = async (data) =>{
+    const {name,email,url,password} = data
+    const { data:res, error } = await authClient.signUp.email({
+    name: name, // required
+    email: email, // required
+    password:password, // required
+    image: url,
+    callbackURL: "/",
+});
+
+
+  }
+  
   return (
-    <div className="min-h-screen flex items-center justify-center 
-    bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 px-3">
-
+    <div className="min-h-screen bg-[#F3F3F3] flex items-center justify-center p-4">
+      
       {/* Card */}
-      <div className="mx-auto w-full max-w-sm sm:max-w-md 
-      bg-white/10 backdrop-blur-xl border border-white/20 
-      rounded-2xl shadow-2xl p-4 sm:p-6">
+      <div className="bg-white w-full max-w-md p-6 md:p-8 rounded-md shadow">
 
-        {/* Title with Icon */}
-        <div className="flex items-center justify-center gap-2 mb-4">
-          <FaUserPlus className="text-white text-lg" />
-          <h2 className="text-xl sm:text-2xl font-bold text-white">
-            Create Account
-          </h2>
-        </div>
+        {/* Header */}
+        <h1 className="text-2xl font-bold text-[#403F3F] text-center mb-6">
+          Register your account
+        </h1>
 
-        <p className="text-center text-gray-300 mb-5 text-xs sm:text-sm">
-          Join the Tiles Gallery today
-        </p>
+        <hr className="border-gray-200 mb-6" />
 
-        {/* Username */}
-        <div className="mb-3">
-          <label className="text-xs text-gray-200">Username</label>
-          <div className="relative mt-1">
-            <FaUser className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-300 text-sm" />
+        <form onSubmit={handleSubmit(handleregonSubmit)} className="space-y-4">
+
+          {/* Name */}
+          <div className="space-y-2">
+            <label className="text-sm font-semibold text-[#403F3F]">
+              Your Name
+            </label>
             <input
               type="text"
-              placeholder="Enter username"
-              className="w-full pl-9 pr-3 py-2 rounded-lg 
-              bg-white/10 text-white border border-white/20 
-              focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm"
+              placeholder="Enter your name"
+              className="w-full bg-[#F3F3F3] rounded-md py-3 px-4 text-sm focus:ring-2 focus:ring-gray-400 outline-none"
+              {...register("name", { required: "User name Requird" })}
             />
+            {errors.name && <span className="text-red-500">{errors.name.message}</span>}
           </div>
-        </div>
 
-        {/* Image URL */}
-        <div className="mb-3">
-          <label className="text-xs text-gray-200">Image URL</label>
-          <div className="relative mt-1">
-            <AiOutlineLink className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-300 text-sm" />
+          {/* Photo URL */}
+          <div className="space-y-2">
+            <label className="text-sm font-semibold text-[#403F3F]">
+              Photo URL
+            </label>
             <input
               type="text"
-              placeholder="Image link"
-              className="w-full pl-9 pr-3 py-2 rounded-lg 
-              bg-white/10 text-white border border-white/20 
-              focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm"
+              placeholder="Enter your photo URL"
+              className="w-full bg-[#F3F3F3] rounded-md py-3 px-4 text-sm focus:ring-2 focus:ring-gray-400 outline-none"
+              {...register("url")}
+            
             />
           </div>
-        </div>
 
-        {/* Email */}
-        <div className="mb-3">
-          <label className="text-xs text-gray-200">Email</label>
-          <div className="relative mt-1">
-            <MdEmail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-300 text-sm" />
+          {/* Email */}
+          <div className="space-y-2">
+            <label className="text-sm font-semibold text-[#403F3F]">
+              Email
+            </label>
             <input
               type="email"
-              placeholder="Enter email"
-              className="w-full pl-9 pr-3 py-2 rounded-lg 
-              bg-white/10 text-white border border-white/20 
-              focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm"
+              placeholder="Enter your email"
+              className="w-full bg-[#F3F3F3] rounded-md py-3 px-4 text-sm focus:ring-2 focus:ring-gray-400 outline-none"
+             {...register("email", { required: "Email must Requird" })}
+            
             />
+            {errors.email && <span className="text-red-500">{errors.email.message}</span>}
           </div>
-        </div>
 
-        {/* Password */}
-        <div className="mb-4">
-          <label className="text-xs text-gray-200">Password</label>
-          <div className="relative mt-1">
-            <RiLockPasswordFill className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-300 text-sm" />
+          {/* Password */}
+          <div className="space-y-2">
+            <label className="text-sm font-semibold text-[#403F3F]">
+              Password
+            </label>
             <input
               type="password"
-              placeholder="Enter password"
-              className="w-full pl-9 pr-3 py-2 rounded-lg 
-              bg-white/10 text-white border border-white/20 
-              focus:outline-none focus:ring-1 focus:ring-blue-500 text-sm"
+              placeholder="Enter your password"
+              className="w-full bg-[#F3F3F3] rounded-md py-3 px-4 text-sm focus:ring-2 focus:ring-gray-400 outline-none"
+             {...register("password", { required: "Password must Requird" })}
             />
+            {errors.password && <span className="text-red-500">{errors.password.message}</span>}
           </div>
-        </div>
 
-        {/* Button */}
-        <button className="w-full flex items-center justify-center gap-2 
-        py-2 rounded-lg bg-blue-600 hover:bg-blue-700 
-        text-white text-sm font-semibold transition">
-          <FaUserPlus />
-          Register
-        </button>
+          {/* Terms */}
+          <div className="flex items-center gap-2">
+            <input 
+              type="checkbox" 
+              id="terms"
+              className="w-4 h-4 accent-[#403F3F] cursor-pointer"
 
-        {/* Divider */}
-        <div className="flex items-center my-4">
-          <div className="flex-1 h-px bg-white/20"></div>
-          <span className="px-2 text-gray-300 text-xs">OR</span>
-          <div className="flex-1 h-px bg-white/20"></div>
-        </div>
+              {...register("checkbox", { required: "Please Select Terms & Conditions" })}
+            />
+            {errors.checkbox && <span className="text-red-500">{errors.checkbox.message}</span>}
+            <br />
+            <label htmlFor="terms" className="text-sm text-[#706F6F]">
+              Accept <p className="font-semibold text-[#403F3F]">Terms & Conditions</p>
+            </label>
+          </div>
 
-        {/* Google */}
-        <button className="w-full flex items-center justify-center gap-2 
-        py-2 rounded-lg bg-white text-black 
-        text-sm font-semibold hover:bg-gray-200 transition">
-          <FcGoogle />
-          Continue with Google
-        </button>
+          {/* Button */}
+          <button
+            type="submit"
+            className="w-full bg-purple-500 text-white font-semibold py-3 rounded-md text-sm hover:bg-[#2b2a2a]"
+          >
+            Register
+          </button>
 
-        {/* Login Link */}
-        <p className="text-center text-gray-300 mt-4 text-xs">
-          Already have an account?{" "}
-          <Link href="/login" className="text-blue-400 hover:underline">
-            Login
+        </form>
+         <Link href="/login">
+            <span className="text-[#F75B5F] hover:underline text-center cursor-pointer">
+              Login
+            </span>
           </Link>
-        </p>
-
       </div>
     </div>
-  );
+  )
 }
