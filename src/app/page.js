@@ -15,7 +15,7 @@ export default function Home() {
     <h1 className="text-xl md:text-5xl text-zinc-800 font-sans font-bold tracking-tight animate__animated animate__bounce">
       Discover Your Perfect Aesthetic
     </h1>
-    <button className="btn  btn-primary my-5 animate__animated animate__slideInUp"><Link href={"/all-tiles"}>Browse Now</Link></button>
+    <button className="btn  btn-primary my-5 animate__animated animate__slideInUp"><Link href={"/all-tiles"}>All Tiles page</Link></button>
   </div>
   
 </div>

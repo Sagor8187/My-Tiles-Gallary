@@ -1,7 +1,7 @@
 "use client";
 
 import Myloading from "@/component/common/Myloading";
-
+import "animate.css";
 import { myproduct } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
@@ -33,7 +33,7 @@ export default  function Alltilespage() {
 );
   
   return (
-    <div>
+    <div className="animate__animated animate__zoomIn">
       <div className="my-5 mx-5">
         <div className="join">
           <div>
@@ -42,7 +42,7 @@ export default  function Alltilespage() {
                 value={search}
                 onChange={(e) => setsearch(e.target.value)}
                 type="text"
-                placeholder="Search by Category name "
+                placeholder="Search by Product Title "
                 required
               />
             </label>
