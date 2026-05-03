@@ -1,15 +1,37 @@
 "use client";
 
+import Myloading from "@/component/common/Myloading";
+
 import { myproduct } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default async function Alltilespage() {
+
+export default  function Alltilespage() {
   const [search, setsearch] = useState("");
- console.log(search)
+   const [data, setData] = useState([]);
 
-  const data =await myproduct()
+   const [loading,setloading] = useState(false)
+   
+ 
+  useEffect(() => {
+  const loadData = async () => {
+    setloading(true);
+
+    const res = await myproduct();
+    setData(res);
+
+    setloading(false);
+  };
+
+  loadData();
+}, []);
+
+ const filterdata = data.filter(item =>
+  item.title.toLowerCase().includes(search.toLowerCase())
+);
+  
   return (
     <div>
       <div className="my-5 mx-5">
@@ -25,13 +47,13 @@ export default async function Alltilespage() {
               />
             </label>
           </div>
-          <button onChange={(e)=>setsearch(e.target.value)} className="btn btn-neutral join-item">
+          <button onChange={(e) => setsearch(e.target.value)} className="btn btn-neutral join-item">
             Search
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
-        {data.map((item) => (
+      {loading?<Myloading></Myloading>:<div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+        {filterdata.map((item) => (
           <div
             key={item.id}
             className=" rounded-lg shadow-md overflow-hidden bg-white"
@@ -72,7 +94,7 @@ export default async function Alltilespage() {
             </div>
           </div>
         ))}
-      </div>
+      </div>}
     </div>
   );
 }
