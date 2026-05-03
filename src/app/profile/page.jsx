@@ -37,7 +37,8 @@ export default function ProfileDashboard() {
             Update Information
           </li>
         
-        </ul>
+        </ul> 
+        
 
         <button
           onClick={() => authClient.signOut()}
