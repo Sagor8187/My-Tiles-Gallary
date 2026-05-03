@@ -1,0 +1,12 @@
+ @keyframes softBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px); /* 👈 এখানে height control */
+  }
+}
+
+.soft_bounce {
+  animation: softBounce 2.5s ease-in-out infinite;
+}

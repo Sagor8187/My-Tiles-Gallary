@@ -1,17 +1,42 @@
+"use client"
 
-export default function Searchproduct() {
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import React, { useState } from 'react'
+
+
+export default function Searxh() {
+  const [search,setsearch]= useState("")
+  const searchparams = useSearchParams()
+  console.log(searchparams)
+  const router = useRouter()
+  console.log(router)
+  const pathname = usePathname()
+  console.log(pathname)
+const handlesearch = ()=>{
+  const params = new URLSearchParams(searchparams)
+  console.log(params)
+ 
+  if(search){
+    params.set("category",search)
+  }else{
+    params.delete("category")
+  }
+  router.push(`${pathname}?${params.toString()}`)
+}
   return (
     <div>
         <div className="join">
   <div>
     <label className="input validator join-item">
-      
-      <input type="text" placeholder="Enter product name "  />
+     
+      <input value={search} onChange={(e)=>setsearch(e.target.value)} type="text" placeholder="Search by Category name " required />
     </label>
-    <div className="validator-hint hidden">Enter valid email address</div>
+    
   </div>
-  <button className="btn btn-neutral join-item">Search</button>
+  <button onClick={handlesearch} className="btn btn-neutral join-item">Search</button>
 </div>
+
     </div>
   )
 }
+

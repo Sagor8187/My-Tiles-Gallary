@@ -1,6 +1,8 @@
 "use client"
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import 'animate.css';
+import soft_bounce from"./my.css"
 
 export default function Navbar() {
     const pathname = usePathname()
@@ -10,7 +12,7 @@ export default function Navbar() {
       href={href}
       className={`px-3 py-2 rounded-md transition ${
         pathname === href
-          ? "bg-purple-600 text-white"
+          ? "bg-purple-600 text-white animate__animated soft_bounce animate__infinite animate__slow"
           : "hover:bg-gray-200"
       }`}
     >
@@ -20,7 +22,7 @@ export default function Navbar() {
 
   return (
     <div>
-      <div className="navbar bg-base-100 shadow-sm">
+      <div className="navbar bg-base-100 shadow-sm animate__animated animate__slideInDown animate__faster">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
