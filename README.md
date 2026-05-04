@@ -74,21 +74,23 @@ It includes authentication, protected routes, profile management, and a dynamic 
 ---
 
 ## 📦 NPM Packages Used
-1.@better-auth/mongo-adapter – Adapter for integrating authentication with MongoDB
-2.better-auth – Authentication system for handling user login and sessions
-3.mongodb – NoSQL database for storing application data
-4.@heroui/react – Modern UI component library for React
-5.@heroui/styles – Styling utilities for HeroUI components
-6.daisyUI – Tailwind CSS-based component library for faster UI development
-7.tailwindcss – Utility-first CSS framework for designing responsive layouts
-8.framer-motion – Library for creating smooth animations and transitions
-9.animate.css – Pre-built CSS animations
-10.swiper – Powerful slider/carousel library
-11.react-fast-marquee – Lightweight marquee (scrolling text) component
-12.react-hook-form – Efficient form handling and validation
-13.react-icons – Popular icon library (FontAwesome, etc.)
-14.@gravity-ui/icons – Additional modern icon set
-15.react-toastify – Toast notifications for user feedback
+## 🚀 Tech Stack & Dependencies
+
+1. **@better-auth/mongo-adapter** – Adapter for integrating authentication with MongoDB  
+2. **better-auth** – Authentication system for handling user login and sessions  
+3. **mongodb** – NoSQL database for storing application data  
+4. **@heroui/react** – Modern UI component library for React  
+5. **@heroui/styles** – Styling utilities for HeroUI components  
+6. **daisyUI** – Tailwind CSS-based component library for faster UI development  
+7. **tailwindcss** – Utility-first CSS framework for designing responsive layouts  
+8. **framer-motion** – Library for creating smooth animations and transitions  
+9. **animate.css** – Pre-built CSS animations  
+10. **swiper** – Powerful slider/carousel library  
+11. **react-fast-marquee** – Lightweight marquee (scrolling text) component  
+12. **react-hook-form** – Efficient form handling and validation  
+13. **react-icons** – Popular icon library (FontAwesome, etc.)  
+14. **@gravity-ui/icons** – Additional modern icon set  
+15. **react-toastify** – Toast notifications for user feedback  
 ---
 
 ## 🔐 Authentication Flow
