@@ -1,12 +1,12 @@
 
 # 🧱 Tiles Gallery
 
-A modern full-stack web application to showcase a beautiful collection of tiles with authentication, dynamic gallery, and user profile management.
+A modern web application to showcase a beautiful collection of tiles with authentication, dynamic gallery, and user profile management.
 
 ---
 
 ## 🌐 Live Demo
-👉 https://your-live-link-here.com
+https://my-tiles-gallary.vercel.app/
 
 ---
 
@@ -18,6 +18,17 @@ It includes authentication, protected routes, profile management, and a dynamic 
 ---
 
 ## ✨ Key Features
+
+1. 🖼️ **Dynamic Tiles Gallery** – Displays a visually appealing tiles image gallery  
+2. 🔍 **Search Functionality** – Easily search tiles by title  
+3. 👤 **User Authentication** – Secure login and registration using Better Auth  
+4. 📦 **Product Details Page** – View detailed information for each tile  
+5. ⚡ **Fast & Responsive UI** – Fully responsive design using Tailwind CSS  
+6. 🎞️ **Smooth Animations** – Enhanced UI with Framer Motion and Animate.css  
+7. 🔄 **Loading Skeleton** – Smooth loading experience while fetching data  
+8. 📱 **Mobile Friendly** – Optimized for all screen sizes and devices  
+9. 🔔 **Toast Notifications** – Instant feedback for user actions  
+10.🧩 **Modern UI Components** – Clean and reusable components using HeroUI and DaisyUI  
 
 ### 🏠 Home Page
 - Hero banner with “Discover Your Perfect Aesthetic”
@@ -58,28 +69,26 @@ It includes authentication, protected routes, profile management, and a dynamic 
 - Next.js  
 - Tailwind CSS  
 - Better Auth  
-- MongoDB 
+- MongoDB
 
 ---
 
 ## 📦 NPM Packages Used
-
-- @better-auth/mongo-adapter  
-- @gravity-ui/icons  
-- @heroui/react  
-- @heroui/styles  
-- animate.css  
-- better-auth  
-- framer-motion  
-- mongodb  
-- react-fast-marquee  
-- react-hook-form  
-- react-icons  
-- react-toastify  
-- swiper  
-- daisyui  
-- tailwindcss  
-
+1.@better-auth/mongo-adapter – Adapter for integrating authentication with MongoDB
+2.better-auth – Authentication system for handling user login and sessions
+3.mongodb – NoSQL database for storing application data
+4.@heroui/react – Modern UI component library for React
+5.@heroui/styles – Styling utilities for HeroUI components
+6.daisyUI – Tailwind CSS-based component library for faster UI development
+7.tailwindcss – Utility-first CSS framework for designing responsive layouts
+8.framer-motion – Library for creating smooth animations and transitions
+9.animate.css – Pre-built CSS animations
+10.swiper – Powerful slider/carousel library
+11.react-fast-marquee – Lightweight marquee (scrolling text) component
+12.react-hook-form – Efficient form handling and validation
+13.react-icons – Popular icon library (FontAwesome, etc.)
+14.@gravity-ui/icons – Additional modern icon set
+15.react-toastify – Toast notifications for user feedback
 ---
 
 ## 🔐 Authentication Flow
