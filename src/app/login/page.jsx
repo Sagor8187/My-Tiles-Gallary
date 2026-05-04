@@ -3,7 +3,8 @@
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-
+import { FcGoogle } from "react-icons/fc";
+import { toast } from "react-toastify";
 export default function LoginPage() {
 
     const {
@@ -20,8 +21,17 @@ export default function LoginPage() {
     password:password, // required
     rememberMe: true,
     callbackURL:"/",
+
 });
-    console.log(data)
+
+
+    if (error) {
+    toast.error(error.message);
+    
+  } else {
+    toast.success("Login Successful ✅");
+    
+  }
   }
   return (
     <div className="bg-[#F3F3F3] flex items-center justify-center min-h-screen p-4">
@@ -76,6 +86,15 @@ export default function LoginPage() {
             Login
           </button>
         </form>
+         <button
+    
+      className="flex mt-2 items-center justify-center gap-3 w-full py-2 px-4 bg-white border border-gray-300 rounded-lg shadow-sm hover:shadow-md transition duration-300"
+    >
+      <FcGoogle size={22} />
+      <span className="text-gray-700 font-medium">
+        Continue with Google
+      </span>
+    </button>
 
         {/* Footer */}
         <p className="text-center mt-6 text-sm text-[#706F6F]">

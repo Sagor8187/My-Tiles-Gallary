@@ -20,7 +20,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <h2 className="text-xl sm:text-2xl font-bold text-white">
-               <a className="text-xl font-bold"><span className="text-2xl text-purple-700 ">Elite</span> Tiles</a>
+               <a className="text-xl font-bold"><span className="text-2xl text-purple-700 "> Tiles</span> Gallery</a>
             </h2>
             <p className="mt-3 text-sm leading-6">
               Premium quality tiles for your dream home. Stylish and modern designs.

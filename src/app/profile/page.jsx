@@ -3,7 +3,10 @@
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import "animate.css";
-import { FaUser, FaBoxOpen, FaCog, FaSignOutAlt } from "react-icons/fa";
+import Modalform from "@/component/Modalform";
+import { FaSignOutAlt, FaUser } from "react-icons/fa";
+
+
 
 export default function ProfileDashboard() {
   const { data: session } = authClient.useSession();
@@ -26,15 +29,15 @@ export default function ProfileDashboard() {
   }
 
   return (
-    <div className="min-h-screen flex bg-slate-900 text-white">
+    <div className="min-h-screen flex flex-col md:flex-row bg-slate-900 text-white">
       
       {/* 🔹 Sidebar */}
-      <aside className="w-64 bg-slate-800 p-5 hidden md:block animate__animated animate__fadeInLeft">
+      <aside className="w-64 bg-slate-800 p-5   animate__animated animate__fadeInLeft">
         <h2 className="text-2xl font-bold text-purple-500 mb-6 flex items-center"><FaUser /> Profile</h2>
 
         <ul className="space-y-3">
-          <li className="flex font-bold items-center gap-2 hover:bg-slate-700 p-2 rounded cursor-pointer transition">
-            Update Information
+          <li className="flex font-bold items-center bg-purple-500 text-center gap-2 hover:bg-slate-700 p-2 rounded cursor-pointer transition">
+            <Modalform></Modalform>
           </li>
         
         </ul> 
@@ -105,9 +108,12 @@ export default function ProfileDashboard() {
             </div>
 
           </div>
+          
         </div>
 
       </div>
+      
     </div>
+    
   );
 }

@@ -3,8 +3,9 @@
 import { authClient } from '@/lib/auth-client'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
+import { FcGoogle } from 'react-icons/fc';
 
-
+import { toast } from "react-toastify";
 
 export default function RegisterPage() {
 
@@ -22,8 +23,19 @@ export default function RegisterPage() {
     email: email, // required
     password:password, // required
     image: url,
-    callbackURL: "/",
+    callbackURL: "/login",
 });
+
+  if (error) {
+    toast.error(error.message);
+    
+  } else {
+    toast.success("Registar Successful ✅");
+     setTimeout(() => {
+      router.push("/login");
+    }, 1500);
+    
+  }
 
 
   }
@@ -125,6 +137,15 @@ export default function RegisterPage() {
           </button>
 
         </form>
+        <button
+            
+              className="flex mt-2 items-center justify-center gap-3 w-full py-2 px-4 bg-white border border-gray-300 rounded-lg shadow-sm hover:shadow-md transition duration-300"
+            >
+              <FcGoogle size={22} />
+              <span className="text-gray-700 font-medium">
+                Continue with Google
+              </span>
+            </button>
          <Link href="/login">
             <span className="text-[#F75B5F] hover:underline text-center cursor-pointer">
               Login

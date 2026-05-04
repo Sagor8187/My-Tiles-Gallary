@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import 'animate.css';
 import soft_bounce from"./my.css"
 import { authClient } from "@/lib/auth-client";
+import { toast } from "react-toastify";
 
 
 export default function Navbar() {
@@ -59,7 +60,7 @@ export default function Navbar() {
           </ul>
             
           </div>
-          <Link href={"/"} className="text-xl font-bold"><span className="text-2xl text-purple-700 ">Elite</span> Tiles</Link>
+          <Link href={"/"} className="text-xl font-bold"><span className="text-2xl text-purple-700 ">Tiles</span> Gallery</Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul  className="menu menu-horizontal px-1 font-bold flex gap-2">
@@ -72,7 +73,7 @@ export default function Navbar() {
           {info?<div className="flex justify-center gap-4 items-center">
             <h1 className="hidden md:block text-purple-600 font-bold">Welcome  <span className="font-bold text-black"> {info?.name}</span></h1>
             <div className="w-8"><img src={info?.image} className=" w-full rounded-full" alt="profile" /></div>
-            <button onClick={()=>authClient.signOut()}  className="btn bg-purple-600 text-white font-bold">Logout</button>
+            <button onClick={()=>{authClient.signOut(),toast.success("Logout Successful ✅")}}  className="btn bg-purple-600 text-white font-bold">Logout</button>
             </div>: <Link href={"/login"}
            className="btn bg-purple-600 text-white font-bold">Login</Link>}
          

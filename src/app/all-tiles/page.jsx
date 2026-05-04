@@ -34,6 +34,7 @@ export default  function Alltilespage() {
   
   return (
     <div className="animate__animated animate__zoomIn">
+      
       <div className="my-5 mx-5">
         <div className="join">
           <div>
