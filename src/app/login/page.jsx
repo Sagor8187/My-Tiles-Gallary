@@ -29,10 +29,18 @@ export default function LoginPage() {
     toast.error(error.message);
     
   } else {
-    toast.success("Login Successful ✅");
+    toast.success("Login Successful ");
     
   }
   }
+
+  const signIngoogle = async () => {
+  const data = await authClient.signIn.social({
+    provider: "google",
+  });
+   
+};
+
   return (
     <div className="bg-[#F3F3F3] flex items-center justify-center min-h-screen p-4">
       
@@ -87,7 +95,7 @@ export default function LoginPage() {
           </button>
         </form>
          <button
-    
+    onClick={()=>signIngoogle()}
       className="flex mt-2 items-center justify-center gap-3 w-full py-2 px-4 bg-white border border-gray-300 rounded-lg shadow-sm hover:shadow-md transition duration-300"
     >
       <FcGoogle size={22} />

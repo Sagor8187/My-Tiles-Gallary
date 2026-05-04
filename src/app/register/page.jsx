@@ -30,7 +30,7 @@ export default function RegisterPage() {
     toast.error(error.message);
     
   } else {
-    toast.success("Registar Successful ✅");
+    toast.success("Registar Successful ");
      setTimeout(() => {
       router.push("/login");
     }, 1500);
@@ -39,7 +39,13 @@ export default function RegisterPage() {
 
 
   }
-  
+
+const signIngoogle = async () => {
+  const data = await authClient.signIn.social({
+    provider: "google",
+  });
+   
+};
   return (
     <div className="min-h-screen bg-[#F3F3F3] flex items-center justify-center p-4">
       
@@ -138,7 +144,7 @@ export default function RegisterPage() {
 
         </form>
         <button
-            
+            onClick={()=>signIngoogle()}
               className="flex mt-2 items-center justify-center gap-3 w-full py-2 px-4 bg-white border border-gray-300 rounded-lg shadow-sm hover:shadow-md transition duration-300"
             >
               <FcGoogle size={22} />
@@ -146,7 +152,8 @@ export default function RegisterPage() {
                 Continue with Google
               </span>
             </button>
-         <Link href="/login">
+         <Link href="/login" className='mx-5 md:mx-11'>
+         You have Already an Acoount &nbsp;
             <span className="text-[#F75B5F] hover:underline text-center cursor-pointer">
               Login
             </span>

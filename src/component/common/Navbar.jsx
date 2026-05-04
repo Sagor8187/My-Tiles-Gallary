@@ -24,9 +24,10 @@ export default function Navbar() {
   );
 
 
-  const { data: session } = authClient.useSession()
+  const { data: session ,isPending} = authClient.useSession()
+  
   const info = session?.user
-  console.log(session)
+ 
   return (
     <div>
       <div className="navbar bg-base-100 shadow-sm animate__animated animate__slideInDown animate__faster">
@@ -70,9 +71,10 @@ export default function Navbar() {
           </ul>
         </div>
         <div className="navbar-end">
-          {info?<div className="flex justify-center gap-4 items-center">
+          
+          {isPending?<span className="loading loading-bars loading-xs"></span>:info?<div className="flex justify-center gap-4 items-center">
             <h1 className="hidden md:block text-purple-600 font-bold">Welcome  <span className="font-bold text-black"> {info?.name}</span></h1>
-            <div className="w-8"><img src={info?.image} className=" w-full rounded-full" alt="profile" /></div>
+            <div className="w-8"><img src={info?.image} className=" w-full h-10 rounded-full" alt="profile" /></div>
             <button onClick={()=>{authClient.signOut(),toast.success("Logout Successful ✅")}}  className="btn bg-purple-600 text-white font-bold">Logout</button>
             </div>: <Link href={"/login"}
            className="btn bg-purple-600 text-white font-bold">Login</Link>}
